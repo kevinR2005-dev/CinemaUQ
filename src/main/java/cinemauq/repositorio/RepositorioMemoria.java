@@ -1,7 +1,5 @@
 package cinemauq.repositorio;
 
-import CinemaUQ.excepcion.EntidadNoEncontradaException;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
