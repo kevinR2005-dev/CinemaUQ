@@ -1,4 +1,4 @@
-package modelo.ventas;
+package main.modelo;
 
 public class Compra {
 }

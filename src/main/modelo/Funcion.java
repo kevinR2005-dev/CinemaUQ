@@ -1,4 +1,4 @@
-package modelo.cartelera;
+package main.modelo;
 
 public class Funcion {
 }

@@ -1,4 +1,4 @@
-package modelo.usuarios;
+package main.modelo;
 
 public class Administrador {
 }
