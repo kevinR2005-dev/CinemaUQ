@@ -1,4 +1,4 @@
-package main.modelo;
+package cinemauq.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class Compra {
             return this;
         }
 
-        // Regla de negocio 03 y 04.
+        // Regla de negocio 04: Toda compra requiere un cliente, función y al menos un asiento.
 
         public void validar(){
             if(cliente==null){
@@ -99,7 +99,7 @@ public class Compra {
             if (asientos.isEmpty()){
                 throw new IllegalStateException("La compra requiere al menos un asiento.");
             }
-
+            //Regla de negocio 03: máximo 8 entradas por compra.
             if (asientos.size() >  MAX_ASIENTOS){
                 throw new IllegalStateException("Máximo" + MAX_ASIENTOS + " asientos por compra.")
             }

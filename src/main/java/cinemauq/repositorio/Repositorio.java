@@ -1,4 +1,4 @@
-package main.repositorio;
+package cinemauq.repositorio;
 
 public interface Repositorio<T, ID> {
     void guardar(T t);

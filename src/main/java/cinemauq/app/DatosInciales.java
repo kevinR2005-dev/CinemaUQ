@@ -1,4 +1,4 @@
-package main.app;
+package cinemauq.app;
 
 public class DatosInciales {
 }

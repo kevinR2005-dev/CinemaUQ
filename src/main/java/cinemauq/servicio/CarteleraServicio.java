@@ -1,4 +1,4 @@
-package main.servicio;
+package cinemauq.servicio;
 
 public class CarteleraServicio {
 }

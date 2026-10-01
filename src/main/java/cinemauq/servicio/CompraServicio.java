@@ -1,10 +1,10 @@
-package main.servicio;
+package cinemauq.servicio;
 
-import CinemaUQ.excepcion.AsientoNoDisponibleException;
-import CinemaUQ.modelo.Compra;
-import CinemaUQ.modelo.ConsecutivoFactura;
-import CinemaUQ.modelo.Funcion;
-import CinemaUQ.repositorio.Repositorio;
+import cinemauq.excepcion.AsientoNoDisponibleException;
+import cinemauq.modelo.Compra;
+import cinemauq.modelo.ConsecutivoFactura;
+import cinemauq.modelo.Funcion;
+import cinemauq.repositorio.Repositorio;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class CompraServicio {
 
     private final Repositorio<Compra, Integer> repositorio;
-    private final ConsecutivoFactura consecutivo; // el Singleton llega por constructor
+    private final ConsecutivoFactura consecutivo;
 
     public CompraServicio(Repositorio<Compra, Integer> repositorio, ConsecutivoFactura consecutivo) {
         this.repositorio = repositorio;
@@ -23,7 +23,7 @@ public class CompraServicio {
     }
 
     public Compra confirmarCompra(Compra.Builder b) {
-        // 1) Validar los datos (lanza IllegalStateException si algo falta)
+        // Valida los datos (lanza una excepcion IllegalStateException si algo falta)
         b.validar();
 
 
@@ -31,7 +31,7 @@ public class CompraServicio {
         Funcion funcion = previa.getFuncion();
         List<String> codigos = previa.getAsientos();
 
-        // 2a) Verificar que TODOS estén libres antes de reservar nada (RN-02)
+        // Regla de negocio 02: Un asiento no se vende dos veces en la misma función.
         Set<String> vistos = new HashSet<>();
         for (String codigo : codigos) {
             if (!vistos.add(codigo)) {
@@ -42,15 +42,15 @@ public class CompraServicio {
             }
         }
 
-        // 2b) Ahora sí reservarlos
+
         for (String codigo : codigos) {
             funcion.getAsiento(codigo).reservar();
         }
 
-        // 3) El número de factura se pide al final: una compra rechazada no gasta número (RN-06)
+        // Regla de negocio 06: una compra rechazada no gasta número (exigencia de la DIAN).
         b.conNumeroFactura(consecutivo.siguiente());
 
-        // 4) Crear y guardar
+
         Compra compra = b.build();
         repositorio.guardar(compra);
         return compra;

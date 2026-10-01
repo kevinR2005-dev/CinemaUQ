@@ -1,4 +1,4 @@
-package main.modelo.reporte;
+package cinemauq.modelo.reporte;
 
 public class GeneradorReporte {
 }

@@ -1,4 +1,4 @@
-package main.excepcion;
+package cinemauq.excepcion;
 
 public class AsientoNoDisponibleException extends RuntimeException {
     public AsientoNoDisponibleException(String mensaje) {

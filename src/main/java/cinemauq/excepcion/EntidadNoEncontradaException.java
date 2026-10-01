@@ -1,4 +1,4 @@
-package main.excepcion;
+package cinemauq.excepcion;
 
 public class EntidadNoEncontradaException extends RuntimeException {
     public EntidadNoEncontradaException(String mensaje) {

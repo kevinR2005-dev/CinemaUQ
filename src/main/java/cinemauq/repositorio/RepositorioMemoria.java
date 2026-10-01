@@ -1,7 +1,6 @@
-package main.repositorio;
+package cinemauq.repositorio;
 
 import CinemaUQ.excepcion.EntidadNoEncontradaException;
-import main.excepcion.EntidadNoEncontradaException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -31,7 +30,7 @@ public class RepositorioMemoria<T, ID> implements Repositorio<T, ID>{
     public T buscarPorId(ID id){
         T encontrado = datos.get(id);
         if(encontrado == null){
-            throw new main.excepcion.EntidadNoEncontradaException("No existe una entidad con id:" + id);
+            throw new cinemauq.excepcion.EntidadNoEncontradaException("No existe una entidad con id:" + id);
         }
         return encontrado;
     }

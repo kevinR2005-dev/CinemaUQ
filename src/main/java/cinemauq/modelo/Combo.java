@@ -1,4 +1,4 @@
-package main.modelo;
+package cinemauq.modelo;
 
 public class Combo {
     private final String nombre;
