@@ -101,7 +101,7 @@ public class Compra {
             }
             //Regla de negocio 03: máximo 8 entradas por compra.
             if (asientos.size() >  MAX_ASIENTOS){
-                throw new IllegalStateException("Máximo" + MAX_ASIENTOS + " asientos por compra.")
+                throw new IllegalStateException("Máximo" + MAX_ASIENTOS + " asientos por compra.");
             }
 
         }

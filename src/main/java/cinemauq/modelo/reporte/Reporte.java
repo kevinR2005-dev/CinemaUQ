@@ -1,4 +1,6 @@
 package cinemauq.modelo.reporte;
 
-public class Reporte {
+public interface Reporte {
+
+    String generar (String datos);
 }
