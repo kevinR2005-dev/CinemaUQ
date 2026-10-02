@@ -12,7 +12,7 @@ public class Compra {
     private final List<String> asientos;
     private final Combo combo;
 
-    //Patron Builder:
+
 
     private Compra(Builder b) {
         this.numeroFactura = b.numeroFactura;
@@ -44,7 +44,7 @@ public class Compra {
         return combo;
     }
 
-    // Aqui va el precio de la función por asiento, ademas del precio del combo (si hay).
+
 
     public double calcularTotal(){
         return funcion.getPrecio() * asientos.size() + (combo != null ?
@@ -83,7 +83,7 @@ public class Compra {
             return this;
         }
 
-        // Regla de negocio 04: Toda compra requiere un cliente, función y al menos un asiento.
+
 
         public void validar(){
             if(cliente==null){
@@ -99,7 +99,7 @@ public class Compra {
             if (asientos.isEmpty()){
                 throw new IllegalStateException("La compra requiere al menos un asiento.");
             }
-            //Regla de negocio 03: máximo 8 entradas por compra.
+
             if (asientos.size() >  MAX_ASIENTOS){
                 throw new IllegalStateException("Máximo" + MAX_ASIENTOS + " asientos por compra.");
             }

@@ -27,7 +27,7 @@ public class Sala {
         return columnas;
     }
 
-    /** Total de asientos de la sala. */
+
     public int getCapacidad() {
         return filas * columnas;
     }

@@ -24,7 +24,7 @@ public class AsientoFuncion {
         return estado == EstadoAsiento.LIBRE;
     }
 
-    /** Marca el asiento como vendido (RN-02: no se vende dos veces). */
+
     public void reservar() {
         if (estado == EstadoAsiento.VENDIDO) {
             throw new AsientoNoDisponibleException("El asiento " + codigo + " ya está vendido");
@@ -32,7 +32,7 @@ public class AsientoFuncion {
         estado = EstadoAsiento.VENDIDO;
     }
 
-    /** PATRÓN PROTOTYPE: devuelve una copia con el mismo código y estado LIBRE. */
+
     @Override
     public AsientoFuncion clone() {
         return new AsientoFuncion(this.codigo);

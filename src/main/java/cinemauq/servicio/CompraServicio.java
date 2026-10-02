@@ -23,7 +23,7 @@ public class CompraServicio {
     }
 
     public Compra confirmarCompra(Compra.Builder b) {
-        // Valida los datos (lanza una excepcion IllegalStateException si algo falta)
+
         b.validar();
 
 
@@ -31,7 +31,7 @@ public class CompraServicio {
         Funcion funcion = previa.getFuncion();
         List<String> codigos = previa.getAsientos();
 
-        // Regla de negocio 02: Un asiento no se vende dos veces en la misma función.
+
         Set<String> vistos = new HashSet<>();
         for (String codigo : codigos) {
             if (!vistos.add(codigo)) {
@@ -47,7 +47,7 @@ public class CompraServicio {
             funcion.getAsiento(codigo).reservar();
         }
 
-        // Regla de negocio 06: una compra rechazada no gasta número (exigencia de la DIAN).
+
         b.conNumeroFactura(consecutivo.siguiente());
 
 

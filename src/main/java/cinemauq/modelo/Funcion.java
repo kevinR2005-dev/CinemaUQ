@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Función de cine: una película en una sala, a una fecha y hora. Es el prototipo principal. */
 public class Funcion {
 
     private int id;
@@ -18,10 +17,10 @@ public class Funcion {
     private LocalDate fecha;
     private LocalTime hora;
     private final double precio;
-    private final Map<String, AsientoFuncion> asientos;   // clave: "A1", "J12"...
+    private final Map<String, AsientoFuncion> asientos;
 
     public Funcion(int id, Pelicula pelicula, Sala sala, LocalDate fecha, LocalTime hora, double precio) {
-        // RN-01: toda función tiene película, sala, fecha y hora
+
         if (pelicula == null || sala == null || fecha == null || hora == null) {
             throw new IllegalArgumentException("La función requiere película, sala, fecha y hora");
         }
@@ -36,7 +35,7 @@ public class Funcion {
         this.precio = precio;
         this.asientos = new LinkedHashMap<>();
 
-        // Se crean los asientos según filas y columnas de la sala: A1..A12, B1..B12, ...
+
         for (int f = 0; f < sala.getFilas(); f++) {
             char letra = (char) ('A' + f);
             for (int c = 1; c <= sala.getColumnas(); c++) {
@@ -46,7 +45,7 @@ public class Funcion {
         }
     }
 
-    /** Constructor privado de copia: solo lo usa clone(). */
+
     private Funcion(Funcion original) {
         this.id = original.id;
         this.pelicula = original.pelicula;   // Película y sala no cambian, se comparten
@@ -96,7 +95,7 @@ public class Funcion {
         this.hora = hora;
     }
 
-    /** Busca un asiento por su código. Lanza EntidadNoEncontradaException si no existe. */
+
     public AsientoFuncion getAsiento(String codigo) {
         AsientoFuncion asiento = asientos.get(codigo);
         if (asiento == null) {
@@ -105,7 +104,7 @@ public class Funcion {
         return asiento;
     }
 
-    /** Lista los asientos que aún están libres. */
+
     public List<AsientoFuncion> asientosLibres() {
         List<AsientoFuncion> libres = new ArrayList<>();
         for (AsientoFuncion asiento : asientos.values()) {
@@ -116,7 +115,7 @@ public class Funcion {
         return libres;
     }
 
-    /** PATRÓN PROTOTYPE: copia profunda. Mapa nuevo y cada asiento clonado, todos LIBRES (RN-05). */
+
     @Override
     public Funcion clone() {
         return new Funcion(this);
