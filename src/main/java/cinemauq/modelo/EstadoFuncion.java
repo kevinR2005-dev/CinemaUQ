@@ -1,4 +1,4 @@
 package cinemauq.modelo;
 
-public class Asiento {
+public enum EstadoFuncion {
 }
