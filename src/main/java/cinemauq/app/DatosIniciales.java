@@ -1,7 +1,7 @@
 package cinemauq.app;
 
 import cinemauq.modelo.Cliente;
-import cinemauq.modelo.Combo;
+import cinemauq.modelo.confiteria.Combo;
 import cinemauq.modelo.Funcion;
 import cinemauq.modelo.Pelicula;
 import cinemauq.modelo.Sala;

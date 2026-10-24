@@ -1,7 +1,7 @@
 package test;
 
 import cinemauq.modelo.Cliente;
-import cinemauq.modelo.Combo;
+import cinemauq.modelo.confiteria.Combo;
 import cinemauq.modelo.Compra;
 import cinemauq.modelo.Funcion;
 import cinemauq.modelo.Pelicula;

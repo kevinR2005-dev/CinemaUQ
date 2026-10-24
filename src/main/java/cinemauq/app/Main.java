@@ -2,7 +2,7 @@ package cinemauq.app;
 
 import cinemauq.excepcion.AsientoNoDisponibleException;
 import cinemauq.modelo.Cliente;
-import cinemauq.modelo.Combo;
+import cinemauq.modelo.confiteria.Combo;
 import cinemauq.modelo.Compra;
 import cinemauq.modelo.ConsecutivoFactura;
 import cinemauq.modelo.Funcion;

@@ -1,5 +1,7 @@
 package cinemauq.modelo;
 
+import cinemauq.modelo.confiteria.Combo;
+
 import java.util.ArrayList;
 import java.util.List;
 
