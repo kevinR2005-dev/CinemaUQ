@@ -1,4 +1,6 @@
 package cinemauq.modelo.precio;
 
-public class CalculadorPrecio {
+public interface CalculadorPrecio {
+
+    double calcular();
 }
