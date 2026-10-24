@@ -1,4 +1,7 @@
 package cinemauq.modelo.confiteria;
 
-public class CategoriaProducto {
+public enum CategoriaProducto {
+
+    BEBIDA, COMIDA, DULCE
+
 }

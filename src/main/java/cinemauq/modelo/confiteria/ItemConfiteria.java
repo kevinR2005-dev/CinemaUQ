@@ -1,4 +1,7 @@
 package cinemauq.modelo.confiteria;
 
-public class ItemConfiteria {
+public interface ItemConfiteria {
+
+    String getNombre();
+    double getPrecio();
 }
