@@ -20,11 +20,7 @@ public class AsientoFuncion {
         return estado;
     }
 
-    public String getCodigo() { return codigo; }
 
-    public boolean estaLibre() { return estado == EstadoAsiento.LIBRE; }
-
-    public void reservar() { estado = EstadoAsiento.VENDIDO; }
 
     public boolean estaLibre() {
         return estado == EstadoAsiento.LIBRE;
