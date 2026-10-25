@@ -82,9 +82,8 @@ public class Funcion {
 
     // En Funcion.java (import java.util.Collections y java.util.List)
     public List<AsientoFuncion> getAsientos() {
-        return Collections.unmodifiableList(asientos);
+        return Collections.unmodifiableList(new ArrayList<>(asientos.values()));
     }
-
     public void setId(int id) {
         this.id = id;
     }
