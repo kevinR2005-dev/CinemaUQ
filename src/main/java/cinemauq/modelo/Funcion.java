@@ -4,10 +4,7 @@ import cinemauq.excepcion.EntidadNoEncontradaException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Funcion {
 
@@ -81,6 +78,11 @@ public class Funcion {
 
     public double getPrecio() {
         return precio;
+    }
+
+    // En Funcion.java (import java.util.Collections y java.util.List)
+    public List<AsientoFuncion> getAsientos() {
+        return Collections.unmodifiableList(asientos);
     }
 
     public void setId(int id) {

@@ -1,4 +1,3 @@
 package cinemauq.modelo;
 
-public class Rol {
-}
+public enum Rol { CLIENTE, ADMINISTRADOR }

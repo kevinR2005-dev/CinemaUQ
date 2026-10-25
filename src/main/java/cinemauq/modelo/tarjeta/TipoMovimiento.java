@@ -1,4 +1,3 @@
 package cinemauq.modelo.tarjeta;
 
-public class TipoMovimiento {
-}
+public enum TipoMovimiento { PAGO, RECARGA }
