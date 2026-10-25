@@ -1,9 +1,11 @@
 package cinemauq.servicio;
 
+import cinemauq.excepcion.CredencialesInvalidasException;
 import cinemauq.modelo.Cliente;
 import cinemauq.modelo.Usuario;
 import cinemauq.repositorio.Repositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuthServicio {
@@ -14,10 +16,21 @@ public class AuthServicio {
     }
 
     public Usuario iniciarSesion(String correo, String contrasena) {
-        return null; // se completa en el hito 2
+        for (Usuario u : usuarios.listar()) {
+            if (u.getCorreo().equals(correo) && u.verificarContrasena(contrasena)) {
+                return u;
+            }
+        }
+        throw new CredencialesInvalidasException("Correo o contrasena incorrectos");
     }
 
     public List<Cliente> listarClientes() {
-        return null; // se completa en el hito 2
+        List<Cliente> clientes = new ArrayList<>();
+        for (Usuario u : usuarios.listar()) {
+            if (u instanceof Cliente) {
+                clientes.add((Cliente) u);
+            }
+        }
+        return clientes;
     }
 }
