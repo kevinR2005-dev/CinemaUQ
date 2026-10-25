@@ -40,10 +40,10 @@ public class CinemaUQApp extends Application {
         this.stage = stage;
 
         // Repositorios
-        Repositorio<Pelicula, Integer> peliculas = new RepositorioMemoria<>();
-        Repositorio<Funcion, Integer> funciones = new RepositorioMemoria<>();
-        Repositorio<Usuario, Integer> usuarios = new RepositorioMemoria<>();
-        Repositorio<Compra, Integer> compras = new RepositorioMemoria<>();
+        Repositorio<Pelicula, Integer> peliculas = new RepositorioMemoria<>(Pelicula::getId);
+        Repositorio<Funcion, Integer> funciones = new RepositorioMemoria<>(Funcion::getId);
+        Repositorio<Usuario, Integer> usuarios = new RepositorioMemoria<>(Usuario::getId);
+        Repositorio<Compra, Integer> compras = new RepositorioMemoria<>(Compra::getNumeroFactura);
 
         // Unica llamada a getInstancia() de la app grafica
         ConsecutivoFactura consecutivo = ConsecutivoFactura.getInstancia();
@@ -54,7 +54,7 @@ public class CinemaUQApp extends Application {
 
         // Servicios
         PagoServicio pagoServicio = new PagoServicio();
-        CarteleraServicio cartelera = new CarteleraServicio(peliculas, funciones);
+        CarteleraServicio cartelera = new CarteleraServicio(funciones, peliculas);
         CompraServicio compraServicio = new CompraServicio(compras, consecutivo, pagoServicio);
         AuthServicio auth = new AuthServicio(usuarios);
         // Proxy de proteccion envolviendo al servicio real

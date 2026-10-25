@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.TarjetaController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Tarjeta virtual" styleClass="titulo"/>
+    <Label fx:id="lblSaldo" styleClass="total"/>
+    <TableView fx:id="tablaMovimientos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="170"/>
+            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="100"/>
+            <TableColumn fx:id="colMonto" text="Monto" prefWidth="120"/>
+            <TableColumn fx:id="colSaldoResultante" text="Saldo resultante" prefWidth="140"/>
+            <TableColumn fx:id="colDetalle" text="Detalle" prefWidth="260"/>
+        </columns>
+    </TableView>
+    <!-- Solo visible para el administrador (lo controla el controlador) -->
+    <VBox fx:id="panelAdmin" spacing="8">
+        <Label text="Recargar tarjeta de un cliente"/>
+        <HBox spacing="10">
+            <ComboBox fx:id="cmbClientes" promptText="Cliente" prefWidth="260"/>
+            <TextField fx:id="txtMonto" promptText="Monto"/>
+            <Button fx:id="btnRecargar" text="Recargar" onAction="#alRecargar"/>
+        </HBox>
+    </VBox>
+    <Button fx:id="btnVolver" text="Volver" onAction="#alVolver"/>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.ConfiteriaController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Confiteria" styleClass="titulo"/>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Catalogo (productos y combos)"/>
+            <ListView fx:id="listaCatalogo" VBox.vgrow="ALWAYS"/>
+        </VBox>
+        <VBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnAgregar" text="Agregar &gt;" onAction="#alAgregar"/>
+            <Button fx:id="btnQuitar" text="&lt; Quitar" onAction="#alQuitar"/>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Tu seleccion"/>
+            <ListView fx:id="listaSeleccion" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+    <Label fx:id="lblTotalConfiteria"/>
+    <HBox spacing="10">
+        <Button fx:id="btnContinuar" text="Continuar a la compra" onAction="#alContinuar"/>
+        <Button fx:id="btnVolver" text="Volver" onAction="#alVolver"/>
+    </HBox>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>

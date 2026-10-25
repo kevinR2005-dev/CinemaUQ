@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.CompraController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Resumen de la compra" styleClass="titulo"/>
+    <Label fx:id="lblFuncion"/>
+    <Label fx:id="lblAsientos"/>
+    <Label fx:id="lblConfiteria"/>
+    <CheckBox fx:id="chkPromocion" text="Aplicar promocion" onAction="#alCambiarPromocion"/>
+    <Label fx:id="lblSubtotal"/>
+    <Label fx:id="lblDescuento"/>
+    <Label fx:id="lblCargo"/>
+    <Label fx:id="lblTotal" styleClass="total"/>
+    <HBox spacing="10">
+        <Button fx:id="btnPagar" text="Pagar" onAction="#alPagar"/>
+        <Button fx:id="btnVolver" text="Volver" onAction="#alVolver"/>
+        <Button fx:id="btnInicio" text="Ir a la cartelera" onAction="#alIrACartelera"/>
+    </HBox>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+    <Label fx:id="lblFactura" styleClass="mensaje-ok"/>
+</VBox>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.AsientosController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label fx:id="lblFuncion" styleClass="titulo"/>
+    <Label text="Pantalla" alignment="CENTER" maxWidth="Infinity" styleClass="pantalla-cine"/>
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+        <GridPane fx:id="gridAsientos" hgap="6" vgap="6" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </GridPane>
+    </ScrollPane>
+    <HBox spacing="16">
+        <Label text="Libre" styleClass="leyenda-libre"/>
+        <Label text="Seleccionado" styleClass="leyenda-seleccionado"/>
+        <Label text="Ocupado" styleClass="leyenda-ocupado"/>
+    </HBox>
+    <Label fx:id="lblSeleccionados"/>
+    <HBox spacing="10">
+        <Button fx:id="btnContinuar" text="Continuar a confiteria" onAction="#alContinuar"/>
+        <Button fx:id="btnVolver" text="Volver" onAction="#alVolver"/>
+    </HBox>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>

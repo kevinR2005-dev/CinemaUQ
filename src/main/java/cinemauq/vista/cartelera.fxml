@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.CarteleraController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label fx:id="lblBienvenida" styleClass="titulo"/>
+    <Label text="Cartelera: elige una funcion"/>
+    <TableView fx:id="tablaFunciones" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colPelicula" text="Pelicula" prefWidth="280"/>
+            <TableColumn fx:id="colSala" text="Sala" prefWidth="80"/>
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="140"/>
+            <TableColumn fx:id="colHora" text="Hora" prefWidth="100"/>
+            <TableColumn fx:id="colPrecio" text="Precio" prefWidth="120"/>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button fx:id="btnElegir" text="Elegir funcion" onAction="#alElegir"/>
+        <Button fx:id="btnTarjeta" text="Mi tarjeta" onAction="#alVerTarjeta"/>
+        <Button fx:id="btnCerrarSesion" text="Cerrar sesion" onAction="#alCerrarSesion"/>
+    </HBox>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>

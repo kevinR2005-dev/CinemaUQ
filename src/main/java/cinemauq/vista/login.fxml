@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.LoginController">
+    <padding>
+        <Insets top="40" right="250" bottom="40" left="250"/>
+    </padding>
+    <Label text="CinemaUQ" styleClass="titulo"/>
+    <Label text="Inicia sesion"/>
+    <TextField fx:id="txtCorreo" promptText="Correo"/>
+    <PasswordField fx:id="txtContrasena" promptText="Contrasena"/>
+    <Button fx:id="btnIngresar" text="Ingresar" onAction="#alIngresar" defaultButton="true"/>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>
