@@ -1,4 +1,6 @@
 package cinemauq.modelo.puntos;
 
-public class ReglaAcumulacion {
+public interface ReglaAcumulacion {
+
+    int calcular(double montoPagado);
 }
