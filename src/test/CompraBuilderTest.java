@@ -8,6 +8,7 @@ import cinemauq.modelo.Sala;
 import cinemauq.modelo.confiteria.CategoriaProducto;
 import cinemauq.modelo.confiteria.Combo;
 import cinemauq.modelo.confiteria.Producto;
+import cinemauq.modelo.puntos.TipoBeneficio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -96,6 +97,23 @@ public class CompraBuilderTest {
                 .conCliente(cliente).conFuncion(funcion).conAsiento("A1").build();
         assertThrows(UnsupportedOperationException.class,
                 () -> compra.getAsientos().add("A2"));
+    }
+
+    @Test
+    void canjearMasEntradasQueAsientosLanzaExcepcion() {
+        Compra.Builder b = new Compra.Builder()
+                .conCliente(cliente).conFuncion(funcion).conAsiento("A1")
+                .conCanje(TipoBeneficio.ENTRADA, 20000)
+                .conCanje(TipoBeneficio.ENTRADA, 20000);
+        assertThrows(IllegalStateException.class, b::build);
+    }
+
+    // Una compra nueva nace PAGADA
+    @Test
+    void laCompraNaceEnEstadoPagada() {
+        Compra compra = new Compra.Builder()
+                .conCliente(cliente).conFuncion(funcion).conAsiento("A1").build();
+        assertEquals("PAGADA", compra.getEstado().getNombre());
     }
 }
 
