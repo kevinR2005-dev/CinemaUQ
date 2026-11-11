@@ -1,4 +1,9 @@
 package cinemauq.modelo.estado;
 
-public class EstadoCompra {
+import cinemauq.modelo.Compra;
+
+public interface EstadoCompra {
+
+    void cancelar (Compra compra);
+    String getNombre();
 }
