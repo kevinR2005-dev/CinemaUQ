@@ -1,4 +1,8 @@
 package cinemauq.modelo.cancelacion;
 
-public class ReembolsoTotal {
+public class ReembolsoTotal implements PoliticaReembolso {
+    @Override
+    public double calcular(double valorPagado) {
+        return valorPagado;
+    }
 }

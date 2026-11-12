@@ -1,4 +1,5 @@
 package cinemauq.modelo.cancelacion;
 
-public class PoliticaReembolso {
+public interface PoliticaReembolso {
+    double calcular(double valorPagado);
 }

@@ -1,4 +1,6 @@
 package cinemauq.modelo.reporte;
 
-public class TipoReporte {
+public enum TipoReporte {
+    VENTAS_PERIODO, ENTRADAS_PELICULA, OCUPACION_SALAS, PRODUCTOS_VENDIDOS,
+    RECARGAS, CANCELACIONES_REEMBOLSOS, PUNTOS
 }
