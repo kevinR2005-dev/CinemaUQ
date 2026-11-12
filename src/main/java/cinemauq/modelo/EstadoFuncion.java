@@ -1,4 +1,5 @@
 package cinemauq.modelo;
 
-public class EstadoFuncion {
+public enum EstadoFuncion {
+    PROGRAMADA, CANCELADA
 }

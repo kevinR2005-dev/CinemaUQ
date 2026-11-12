@@ -1,4 +1,5 @@
 package cinemauq.evento;
 
-public class Observador {
+public interface Observador {
+    void actualizar(EventoCine e);
 }

@@ -3,11 +3,14 @@ package cinemauq.modelo;
 import cinemauq.excepcion.EntidadNoEncontradaException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 public class Funcion {
 
+    // Toda función nace PROGRAMADA (también el clon, porque el campo se inicializa aquí)
+    private EstadoFuncion estado = EstadoFuncion.PROGRAMADA;
     private int id;
     private final Pelicula pelicula;
     private final Sala sala;
@@ -32,7 +35,6 @@ public class Funcion {
         this.precio = precio;
         this.asientos = new LinkedHashMap<>();
 
-
         for (int f = 0; f < sala.getFilas(); f++) {
             char letra = (char) ('A' + f);
             for (int c = 1; c <= sala.getColumnas(); c++) {
@@ -42,7 +44,7 @@ public class Funcion {
         }
     }
 
-
+    // Constructor de copia para clone(): no copia el estado, el clon queda PROGRAMADA
     private Funcion(Funcion original) {
         this.id = original.id;
         this.pelicula = original.pelicula;   // Película y sala no cambian, se comparten
@@ -54,6 +56,10 @@ public class Funcion {
         for (AsientoFuncion asiento : original.asientos.values()) {
             this.asientos.put(asiento.getCodigo(), asiento.clone());   // Cada asiento CLONADO (LIBRE)
         }
+    }
+
+    public EstadoFuncion getEstado() {
+        return estado;
     }
 
     public int getId() {
@@ -80,10 +86,14 @@ public class Funcion {
         return precio;
     }
 
-    // En Funcion.java (import java.util.Collections y java.util.List)
+    public LocalDateTime getFechaHora() {
+        return LocalDateTime.of(fecha, hora);
+    }
+
     public List<AsientoFuncion> getAsientos() {
         return Collections.unmodifiableList(new ArrayList<>(asientos.values()));
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -96,6 +106,10 @@ public class Funcion {
         this.hora = hora;
     }
 
+    // La función pasa a CANCELADA
+    public void cancelar() {
+        this.estado = EstadoFuncion.CANCELADA;
+    }
 
     public AsientoFuncion getAsiento(String codigo) {
         AsientoFuncion asiento = asientos.get(codigo);
@@ -104,7 +118,6 @@ public class Funcion {
         }
         return asiento;
     }
-
 
     public List<AsientoFuncion> asientosLibres() {
         List<AsientoFuncion> libres = new ArrayList<>();
@@ -115,7 +128,6 @@ public class Funcion {
         }
         return libres;
     }
-
 
     @Override
     public Funcion clone() {

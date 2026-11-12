@@ -39,13 +39,26 @@ public class TarjetaVirtual {
                 monto, saldo, detalle)); // RN08
     }
 
+    // Existente: delega con RECARGA
     public void acreditar(double monto, String detalle) {
+        acreditar(monto, detalle, TipoMovimiento.RECARGA);
+    }
+
+    // Tipo RECARGA o REEMBOLSO, con la fecha de ahora
+    public void acreditar(double monto, String detalle, TipoMovimiento tipo) {
+        acreditar(monto, detalle, tipo, LocalDateTime.now());
+    }
+
+    // Con fecha, para datos históricos. Aquí están las validaciones y el cambio de saldo
+    public void acreditar(double monto, String detalle, TipoMovimiento tipo, LocalDateTime fecha) {
+        if (tipo != TipoMovimiento.RECARGA && tipo != TipoMovimiento.REEMBOLSO) {
+            throw new IllegalArgumentException("Solo se acredita por RECARGA o REEMBOLSO");
+        }
         if (monto <= 0) {
             throw new IllegalArgumentException("El monto debe ser mayor a cero");
         }
         saldo += monto;
-        movimientos.add(new Movimiento(LocalDateTime.now(), TipoMovimiento.RECARGA,
-                monto, saldo, detalle)); // RN08
+        movimientos.add(new Movimiento(fecha, tipo, monto, saldo, detalle)); // RN08
     }
 
     public void bloquear() { estado = EstadoTarjeta.BLOQUEADA; }

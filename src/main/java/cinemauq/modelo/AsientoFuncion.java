@@ -20,12 +20,9 @@ public class AsientoFuncion {
         return estado;
     }
 
-
-
     public boolean estaLibre() {
         return estado == EstadoAsiento.LIBRE;
     }
-
 
     public void reservar() {
         if (estado == EstadoAsiento.VENDIDO) {
@@ -34,6 +31,10 @@ public class AsientoFuncion {
         estado = EstadoAsiento.VENDIDO;
     }
 
+    // Vuelve el asiento a LIBRE (se usa al reembolsar)
+    public void liberar() {
+        this.estado = EstadoAsiento.LIBRE;
+    }
 
     @Override
     public AsientoFuncion clone() {

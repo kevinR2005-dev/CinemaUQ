@@ -1,4 +1,5 @@
 package cinemauq.evento;
 
-public class TipoEvento {
+public enum TipoEvento {
+    COMPRA, CANCELACION, RECARGA, VENCIMIENTO_PUNTOS
 }
