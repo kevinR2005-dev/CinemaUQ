@@ -1,7 +1,10 @@
 package test;
 
 import cinemauq.excepcion.CancelacionNoPermitidaException;
-import cinemauq.modelo.cancelacion.*;
+import cinemauq.modelo.cancelacion.PoliticaReembolso;
+import cinemauq.modelo.cancelacion.ReembolsoParcial;
+import cinemauq.modelo.cancelacion.ReembolsoTotal;
+import cinemauq.modelo.cancelacion.SinReembolso;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +32,7 @@ public class PoliticaReembolsoTest {
 
     @Test
     void todasSeUsanPorLaMismaInterfaz() {
-        // Esencia del Strategy: el que usa la política no sabe cuál es
+        // Esencia del Strategy: quien usa la política no sabe cuál es
         PoliticaReembolso[] politicas = { new ReembolsoTotal(), new ReembolsoParcial(80) };
         assertEquals(10000, politicas[0].calcular(10000), 0.001);
         assertEquals(8000, politicas[1].calcular(10000), 0.001);
