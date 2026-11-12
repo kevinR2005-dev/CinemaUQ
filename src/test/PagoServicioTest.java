@@ -1,8 +1,9 @@
-package cinemauq.servicio;
+package test;
 
 import cinemauq.excepcion.SaldoInsuficienteException;
 import cinemauq.excepcion.TarjetaInactivaException;
 import cinemauq.modelo.Cliente;
+import cinemauq.servicio.PagoServicio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package cinemauq.servicio;
+package test;
 
 import cinemauq.excepcion.CredencialesInvalidasException;
 import cinemauq.modelo.Administrador;
@@ -6,6 +6,7 @@ import cinemauq.modelo.Cliente;
 import cinemauq.modelo.Usuario;
 import cinemauq.repositorio.Repositorio;
 import cinemauq.repositorio.RepositorioMemoria;
+import cinemauq.servicio.AuthServicio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

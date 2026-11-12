@@ -1,7 +1,10 @@
-package cinemauq.modelo.tarjeta;
+package test;
 
 import cinemauq.excepcion.SaldoInsuficienteException;
 import cinemauq.excepcion.TarjetaInactivaException;
+import cinemauq.modelo.tarjeta.EstadoTarjeta;
+import cinemauq.modelo.tarjeta.TarjetaVirtual;
+import cinemauq.modelo.tarjeta.TipoMovimiento;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

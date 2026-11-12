@@ -1,8 +1,12 @@
-package cinemauq.servicio;
+package test;
 
+import cinemauq.evento.PublicadorEventos;
 import cinemauq.excepcion.AccesoDenegadoException;
 import cinemauq.modelo.Administrador;
 import cinemauq.modelo.Cliente;
+import cinemauq.servicio.TarjetaServicio;
+import cinemauq.servicio.TarjetaServicioProxy;
+import cinemauq.servicio.TarjetaServicioReal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +19,7 @@ class TarjetaServicioProxyTest {
 
     @BeforeEach
     void preparar() {
-        proxy = new TarjetaServicioProxy(new TarjetaServicioReal());
+        proxy = new TarjetaServicioProxy(new TarjetaServicioReal(new PublicadorEventos()));
         cliente = new Cliente(1, "Ana", "ana@mail.com", "1234");
         admin = new Administrador(2, "Admin", "admin@cinemauq.com", "admin123");
     }
