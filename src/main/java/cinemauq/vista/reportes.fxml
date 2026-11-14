@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cinemauq.controlador.ReportesController">
+    <VBox spacing="12" styleClass="pantalla">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Reportes y estadisticas" styleClass="titulo"/>
+        <HBox spacing="10">
+            <ComboBox fx:id="cmbTipo" promptText="Tipo de reporte" prefWidth="250"/>
+            <DatePicker fx:id="dpDesde" promptText="Desde"/>
+            <DatePicker fx:id="dpHasta" promptText="Hasta"/>
+            <ComboBox fx:id="cmbFormato" promptText="Formato"/>
+        </HBox>
+        <HBox spacing="10">
+            <Button fx:id="btnEmitir" text="Emitir" onAction="#alEmitir"/>
+            <Button fx:id="btnExportar" text="Exportar" onAction="#alExportar"/>
+        </HBox>
+        <TextArea fx:id="areaReporte" editable="false" prefHeight="200"/>
+        <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+        <Label fx:id="lblResultado" styleClass="mensaje-ok"/>
+        <HBox spacing="10">
+            <BarChart fx:id="graficoBarras" title="Barras" prefHeight="260" prefWidth="400">
+                <xAxis><CategoryAxis/></xAxis>
+                <yAxis><NumberAxis/></yAxis>
+            </BarChart>
+            <PieChart fx:id="graficoPastel" title="Pastel" prefHeight="260" prefWidth="400"/>
+        </HBox>
+        <LineChart fx:id="graficoLineas" title="Lineas" prefHeight="260">
+            <xAxis><CategoryAxis/></xAxis>
+            <yAxis><NumberAxis/></yAxis>
+        </LineChart>
+        <Label text="Estadisticas" styleClass="total"/>
+        <Label fx:id="lblVentasTotales"/>
+        <Label fx:id="lblPeliculaTop"/>
+        <Label fx:id="lblProductoTop"/>
+        <Label fx:id="lblReembolsos"/>
+        <HBox spacing="10">
+            <Button fx:id="btnCartelera" text="Cartelera" onAction="#alIrACartelera"/>
+            <Button fx:id="btnAdmin" text="Administracion" onAction="#alIrAAdmin"/>
+        </HBox>
+    </VBox>
+</ScrollPane>

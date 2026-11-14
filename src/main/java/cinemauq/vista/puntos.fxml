@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.PuntosController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Mis puntos" styleClass="titulo"/>
+    <Label fx:id="lblPuntosVigentes" styleClass="total"/>
+    <TableView fx:id="tablaLotes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colObtenidos" text="Obtenidos" prefWidth="110"/>
+            <TableColumn fx:id="colRestantes" text="Restantes" prefWidth="110"/>
+            <TableColumn fx:id="colObtencion" text="Obtencion" prefWidth="140"/>
+            <TableColumn fx:id="colVencimiento" text="Vencimiento" prefWidth="140"/>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button fx:id="btnCartelera" text="Cartelera" onAction="#alIrACartelera"/>
+        <Button fx:id="btnHistorial" text="Historial" onAction="#alIrAHistorial"/>
+        <Button fx:id="btnTarjeta" text="Mi tarjeta" onAction="#alIrATarjeta"/>
+    </HBox>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+</VBox>

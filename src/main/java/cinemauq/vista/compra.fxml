@@ -14,8 +14,16 @@
     <Label fx:id="lblAsientos"/>
     <Label fx:id="lblConfiteria"/>
     <CheckBox fx:id="chkPromocion" text="Aplicar promocion" onAction="#alCambiarPromocion"/>
+    <Label text="Canjear puntos"/>
+    <HBox spacing="10">
+        <ComboBox fx:id="cmbCanje" promptText="Beneficio" onAction="#alCambiarTipoCanje"/>
+        <ComboBox fx:id="cmbItemCanje" promptText="Item de confiteria" prefWidth="220"/>
+        <Button fx:id="btnCanjear" text="Canjear" onAction="#alCanjear"/>
+    </HBox>
+    <Label fx:id="lblCanjes"/>
     <Label fx:id="lblSubtotal"/>
     <Label fx:id="lblDescuento"/>
+    <Label fx:id="lblValorCanjeado"/>
     <Label fx:id="lblCargo"/>
     <Label fx:id="lblTotal" styleClass="total"/>
     <HBox spacing="10">

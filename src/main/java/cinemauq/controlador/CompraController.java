@@ -4,17 +4,23 @@ import cinemauq.app.CinemaUQApp;
 import cinemauq.modelo.Cliente;
 import cinemauq.modelo.Compra;
 import cinemauq.modelo.Funcion;
+import cinemauq.modelo.confiteria.Combo;
 import cinemauq.modelo.confiteria.ItemConfiteria;
+import cinemauq.modelo.confiteria.Producto;
 import cinemauq.modelo.precio.CalculadorPrecio;
 import cinemauq.modelo.precio.CargoServicio;
 import cinemauq.modelo.precio.DescuentoPromocion;
+import cinemauq.modelo.precio.DescuentoPuntos;
 import cinemauq.modelo.precio.PrecioBase;
+import cinemauq.modelo.puntos.TipoBeneficio;
 import cinemauq.servicio.CineFacade;
 import cinemauq.servicio.CompraServicio;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.util.StringConverter;
 
 /**
  * Resumen y pago. El resumen es solo una vista previa; el total real lo
@@ -40,6 +46,11 @@ public class CompraController {
     @FXML private Button btnInicio;
     @FXML private Label lblMensaje;
     @FXML private Label lblFactura;
+    @FXML private ComboBox<TipoBeneficio> cmbCanje;
+    @FXML private ComboBox<ItemConfiteria> cmbItemCanje;
+    @FXML private Button btnCanjear;
+    @FXML private Label lblCanjes;
+    @FXML private Label lblValorCanjeado;
 
     public CompraController(CineFacade facade, Sesion sesion, CinemaUQApp app) {
         this.facade = facade;
@@ -66,6 +77,21 @@ public class CompraController {
             lblConfiteria.setText(sb.toString());
         }
 
+        // Seccion "Canjear puntos"
+        cmbCanje.getItems().setAll(TipoBeneficio.values());
+        cmbItemCanje.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(ItemConfiteria item) {
+                return item == null ? "" : item.getNombre();
+            }
+
+            @Override
+            public ItemConfiteria fromString(String texto) {
+                return null;
+            }
+        });
+        cmbItemCanje.setDisable(true); // solo se usa con PRODUCTO o COMBO
+
         btnInicio.setVisible(false); // solo se muestra despues de pagar
         btnInicio.setManaged(false);
         actualizarResumen();
@@ -82,6 +108,9 @@ public class CompraController {
         for (ItemConfiteria item : sesion.getConfiteria()) {
             b.conConfiteria(item);
         }
+        for (int i = 0; i < sesion.getCanjes().size(); i++) {
+            b.conCanje(sesion.getCanjes().get(i), sesion.getValoresCanje().get(i));
+        }
         return b;
     }
 
@@ -95,18 +124,65 @@ public class CompraController {
             calculador = new DescuentoPromocion(calculador, CompraServicio.PROMOCION_PORCENTAJE);
             descuento = subtotal - calculador.calcular();
         }
+        double valorCanjeado = 0;
+        for (double v : sesion.getValoresCanje()) {
+            valorCanjeado += v;
+        }
+        if (valorCanjeado > 0) {
+            calculador = new DescuentoPuntos(calculador, valorCanjeado);
+        }
         calculador = new CargoServicio(calculador, CompraServicio.CARGO_SERVICIO);
 
         lblSubtotal.setText("Subtotal: " + dinero(subtotal));
         lblDescuento.setText(String.format("Descuento (%.0f%%): -%s",
                 chkPromocion.isSelected() ? CompraServicio.PROMOCION_PORCENTAJE : 0.0,
                 dinero(descuento)));
+        lblCanjes.setText("Canjes: " + (sesion.getCanjes().isEmpty() ? "ninguno" : sesion.getCanjes()));
+        lblValorCanjeado.setText("Valor canjeado: -" + dinero(valorCanjeado));
         lblCargo.setText("Cargo de servicio: +" + dinero(CompraServicio.CARGO_SERVICIO));
         lblTotal.setText("Total: " + dinero(calculador.calcular()));
     }
 
     @FXML
     private void alCambiarPromocion() {
+        actualizarResumen();
+    }
+
+    /** Al cambiar el tipo, el combo de items muestra solo los de ese tipo. */
+    @FXML
+    private void alCambiarTipoCanje() {
+        TipoBeneficio tipo = cmbCanje.getValue();
+        cmbItemCanje.getItems().clear();
+        for (ItemConfiteria item : sesion.getConfiteria()) {
+            if ((tipo == TipoBeneficio.PRODUCTO && item instanceof Producto)
+                    || (tipo == TipoBeneficio.COMBO && item instanceof Combo)) {
+                cmbItemCanje.getItems().add(item);
+            }
+        }
+        cmbItemCanje.setDisable(tipo == null || tipo == TipoBeneficio.ENTRADA);
+    }
+
+    /** Agrega el canje a la sesion; la fachada verifica los puntos al pagar. */
+    @FXML
+    private void alCanjear() {
+        TipoBeneficio tipo = cmbCanje.getValue();
+        if (tipo == null) {
+            lblMensaje.setText("Elige que quieres canjear");
+            return;
+        }
+        double valor;
+        if (tipo == TipoBeneficio.ENTRADA) {
+            valor = sesion.getFuncion().getPrecio();
+        } else {
+            ItemConfiteria item = cmbItemCanje.getValue();
+            if (item == null) {
+                lblMensaje.setText("Elige el item de confiteria a canjear");
+                return;
+            }
+            valor = item.getPrecio();
+        }
+        lblMensaje.setText("");
+        sesion.agregarCanje(tipo, valor);
         actualizarResumen();
     }
 
@@ -121,12 +197,16 @@ public class CompraController {
                     + "Factura No. " + compra.getNumeroFactura() + "\n"
                     + "Pelicula: " + compra.getFuncion().getPelicula().getTitulo() + "\n"
                     + "Asientos: " + String.join(", ", compra.getAsientos()) + "\n"
+                    + "Valor canjeado: " + dinero(compra.getValorCanjeado()) + "\n"
                     + "Total pagado: " + dinero(compra.calcularTotal()));
 
             sesion.limpiarCompra();
             btnPagar.setDisable(true);
             btnVolver.setDisable(true);
             chkPromocion.setDisable(true);
+            cmbCanje.setDisable(true);
+            cmbItemCanje.setDisable(true);
+            btnCanjear.setDisable(true);
             btnInicio.setVisible(true);
             btnInicio.setManaged(true);
         } catch (RuntimeException e) {

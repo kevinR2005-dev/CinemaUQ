@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.AdminController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Administracion de funciones" styleClass="titulo"/>
+    <ListView fx:id="listaFunciones" VBox.vgrow="ALWAYS"/>
+    <Button fx:id="btnCancelarFuncion" text="Cancelar funcion" onAction="#alCancelarFuncion"/>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+    <Label fx:id="lblResultado" styleClass="mensaje-ok"/>
+    <HBox spacing="10">
+        <Button fx:id="btnCartelera" text="Cartelera" onAction="#alIrACartelera"/>
+        <Button fx:id="btnReportes" text="Reportes" onAction="#alIrAReportes"/>
+        <Button fx:id="btnTarjeta" text="Tarjetas" onAction="#alIrATarjeta"/>
+    </HBox>
+</VBox>

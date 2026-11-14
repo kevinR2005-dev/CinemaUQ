@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12" styleClass="pantalla" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinemauq.controlador.HistorialController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Historial de compras" styleClass="titulo"/>
+    <TableView fx:id="tablaCompras" prefHeight="260">
+        <columns>
+            <TableColumn fx:id="colFactura" text="Factura" prefWidth="100"/>
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="180"/>
+            <TableColumn fx:id="colTotal" text="Total" prefWidth="130"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="130"/>
+        </columns>
+    </TableView>
+    <Button fx:id="btnCancelarCompra" text="Cancelar compra" onAction="#alCancelarCompra"/>
+    <Label fx:id="lblMensaje" styleClass="mensaje-error"/>
+    <Label fx:id="lblResultado" styleClass="mensaje-ok"/>
+    <Label text="Notificaciones"/>
+    <ListView fx:id="listaNotificaciones" prefHeight="140"/>
+    <HBox spacing="10">
+        <Button fx:id="btnCartelera" text="Cartelera" onAction="#alIrACartelera"/>
+        <Button fx:id="btnPuntos" text="Mis puntos" onAction="#alIrAPuntos"/>
+        <Button fx:id="btnTarjeta" text="Mi tarjeta" onAction="#alIrATarjeta"/>
+    </HBox>
+</VBox>

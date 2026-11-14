@@ -28,6 +28,11 @@ public class CarteleraController {
     @FXML private TableColumn<Funcion, String> colPrecio;
     @FXML private Button btnElegir;
     @FXML private Label lblMensaje;
+    @FXML private Button btnHistorial;
+    @FXML private Button btnPuntos;
+    @FXML private Button btnAdmin;
+    @FXML private Button btnReportes;
+
 
     public CarteleraController(CineFacade facade, Sesion sesion, CinemaUQApp app) {
         this.facade = facade;
@@ -56,7 +61,41 @@ public class CarteleraController {
         if (sesion.getUsuario().getRol() == Rol.ADMINISTRADOR) {
             btnElegir.setDisable(true);
         }
+
+        // Cada rol ve solo sus botones
+        boolean esAdmin = sesion.getUsuario().getRol() == Rol.ADMINISTRADOR;
+        btnHistorial.setVisible(!esAdmin);
+        btnHistorial.setManaged(!esAdmin);
+        btnPuntos.setVisible(!esAdmin);
+        btnPuntos.setManaged(!esAdmin);
+        btnAdmin.setVisible(esAdmin);
+        btnAdmin.setManaged(esAdmin);
+        btnReportes.setVisible(esAdmin);
+        btnReportes.setManaged(esAdmin);
     }
+
+
+    @FXML
+    private void alVerHistorial() {
+        app.mostrar("historial");
+    }
+
+    @FXML
+    private void alVerPuntos() {
+        app.mostrar("puntos");
+    }
+
+    @FXML
+    private void alVerAdmin() {
+        app.mostrar("admin");
+    }
+
+    @FXML
+    private void alVerReportes() {
+        app.mostrar("reportes");
+    }
+
+
 
     @FXML
     private void alElegir() {

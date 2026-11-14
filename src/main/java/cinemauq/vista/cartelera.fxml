@@ -23,6 +23,10 @@
     <HBox spacing="10">
         <Button fx:id="btnElegir" text="Elegir funcion" onAction="#alElegir"/>
         <Button fx:id="btnTarjeta" text="Mi tarjeta" onAction="#alVerTarjeta"/>
+        <Button fx:id="btnHistorial" text="Historial" onAction="#alVerHistorial"/>
+        <Button fx:id="btnPuntos" text="Mis puntos" onAction="#alVerPuntos"/>
+        <Button fx:id="btnAdmin" text="Administracion" onAction="#alVerAdmin"/>
+        <Button fx:id="btnReportes" text="Reportes" onAction="#alVerReportes"/>
         <Button fx:id="btnCerrarSesion" text="Cerrar sesion" onAction="#alCerrarSesion"/>
     </HBox>
     <Label fx:id="lblMensaje" styleClass="mensaje-error"/>

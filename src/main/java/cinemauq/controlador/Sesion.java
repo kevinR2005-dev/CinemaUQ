@@ -3,6 +3,7 @@ package cinemauq.controlador;
 import cinemauq.modelo.Funcion;
 import cinemauq.modelo.Usuario;
 import cinemauq.modelo.confiteria.ItemConfiteria;
+import cinemauq.modelo.puntos.TipoBeneficio;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +20,9 @@ public class Sesion {
     private Funcion funcion;
     private List<String> asientos = new ArrayList<>();
     private final List<ItemConfiteria> confiteria = new ArrayList<>();
+    // Canjes de puntos: listas paralelas (canjes.get(i) vale valoresCanje.get(i))
+    private final List<TipoBeneficio> canjes = new ArrayList<>();
+    private final List<Double> valoresCanje = new ArrayList<>();
 
     public Usuario getUsuario() {
         return usuario;
@@ -57,10 +61,26 @@ public class Sesion {
         confiteria.remove(item);
     }
 
-    /** Borra funcion, asientos y confiteria (no toca el usuario). */
+    /** Agrega un canje de puntos con su valor en dinero. */
+    public void agregarCanje(TipoBeneficio tipo, double valor) {
+        canjes.add(tipo);
+        valoresCanje.add(valor);
+    }
+
+    public List<TipoBeneficio> getCanjes() {
+        return Collections.unmodifiableList(canjes);
+    }
+
+    public List<Double> getValoresCanje() {
+        return Collections.unmodifiableList(valoresCanje);
+    }
+
+    /** Borra funcion, asientos, confiteria y canjes (no toca el usuario). */
     public void limpiarCompra() {
         funcion = null;
         asientos = new ArrayList<>();
         confiteria.clear();
+        canjes.clear();
+        valoresCanje.clear();
     }
 }
