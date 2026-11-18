@@ -49,7 +49,7 @@ public class DatosIniciales {
         // Clientes: uno con saldo alto y otro con saldo bajo (para probar saldo insuficiente)
         Cliente nicolas = new Cliente(1, "Nicolas Sanchez", "nicolas@correo.com", "1234");
         nicolas.getTarjeta().acreditar(500000, "Saldo inicial");
-        Cliente kevin = new Cliente(2, "Kevin Robin", "kevin@correo.com", "1234");
+        Cliente kevin = new Cliente(2, "Kevin Robi", "kevin@correo.com", "1234");
         kevin.getTarjeta().acreditar(5000, "Saldo inicial");
         clientes.add(nicolas);
         clientes.add(kevin);
