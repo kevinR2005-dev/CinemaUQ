@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import java.time.format.DateTimeFormatter;
 
 /** Muestra la cartelera y deja elegir una funcion. */
 public class CarteleraController {
@@ -50,8 +51,8 @@ public class CarteleraController {
                 new SimpleStringProperty(String.valueOf(c.getValue().getSala().getNumero())));
         colFecha.setCellValueFactory(c ->
                 new SimpleStringProperty(String.valueOf(c.getValue().getFecha())));
-        colHora.setCellValueFactory(c ->
-                new SimpleStringProperty(String.valueOf(c.getValue().getHora())));
+        colHora.setCellValueFactory(c -> new SimpleStringProperty(
+                c.getValue().getHora().format(DateTimeFormatter.ofPattern("HH:mm"))));
         colPrecio.setCellValueFactory(c ->
                 new SimpleStringProperty(String.format("$%,.0f", c.getValue().getPrecio())));
 

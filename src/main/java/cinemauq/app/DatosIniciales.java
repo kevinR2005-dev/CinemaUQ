@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 public class DatosIniciales {
 
@@ -96,7 +97,7 @@ public class DatosIniciales {
                                       Sala s1, Sala s2,
                                       Cliente nicolas, Cliente kevin,
                                       ItemConfiteria producto, ItemConfiteria combo) {
-        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime ahora = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         LocalDate hoy = LocalDate.now();
 
         // Funciones para probar cancelacion: 30 h (100 %), 5 h (80 %), 1 h (rechazo)
